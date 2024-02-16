@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:trainingstudio2/insights_gg.dart';
 
@@ -68,83 +67,82 @@ class _insightsState extends State<insights> {
                   border: Border.all(color: Colors.deepPurpleAccent, width: 2),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: InkWell(
-                  onTap: () {
-                    // Check the selected item and navigate accordingly
-                    if (valueChoose == 'Others') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>InsightsGG()),
-                      );
-                    }
-                    
-                  },
-                  child: DropdownButton(
-                    padding: EdgeInsets.only(left: 4),
-                    value: valueChoose,
-                    onChanged: (newValue) {
-                      setState(() {
-                        valueChoose = newValue.toString();
-                      });
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: InkWell(
+                    onTap: () {
+                      // Check the selected item and navigate accordingly
+                      if (valueChoose == 'Others') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const InsightsGG()),
+                        );
+                      }
                     },
-                    items: listItem.map((valueItem) {
-                      return DropdownMenuItem(
-                        value: valueItem,
-                        child: Text(
-                          valueItem,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }).toList(),
-                    underline: Container(), // Remove the default underline
-                    icon: const Icon(Icons.arrow_drop_down,
-                        color: Colors.deepPurple),
+                    child: DropdownButton(
+                      padding: const EdgeInsets.only(left: 4),
+                      value: valueChoose,
+                      onChanged: (newValue) {
+                        setState(() {
+                          valueChoose = newValue.toString();
+                        });
+                      },
+                      items: listItem.map((valueItem) {
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text(
+                            valueItem,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      underline: Container(), // Remove the default underline
+                      icon: const Icon(Icons.arrow_drop_down,
+                          color: Colors.deepPurple),
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Column(
                 children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Text(
-                          '${rating.toDouble()}',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40,
-                              color: const Color.fromRGBO(103, 58, 183, 1)),
+                  Column(
+                    children: [
+                      Text(
+                        '${rating.toDouble()}',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                            color: Color.fromRGBO(103, 58, 183, 1)),
+                      ),
+                      const SizedBox(height: 3),
+                      RatingBar.builder(
+                        initialRating: rating,
+                        glow: false,
+                        allowHalfRating: true,
+                        unratedColor: Colors.grey,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
                         ),
-                        const SizedBox(height: 3),
-                        RatingBar.builder(
-                          initialRating: rating,
-                          glow: false,
-                          allowHalfRating: true,
-                          unratedColor: Colors.grey,
-                          itemBuilder: (context, _) => const Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          onRatingUpdate: (newRating) {
-                            setState(() {
-                              rating = newRating;
-                            });
-                          },
-                        ),
-                        const SizedBox(height: 8),
-                      ],
-                    ),
+                        onRatingUpdate: (newRating) {
+                          setState(() {
+                            rating = newRating;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 8),
+                    ],
                   ),
                 ],
               ),
               Column(
                 children: [
-                  Container(
-                    child: Column(
-                      children: feedbacks.map((feedback) {
-                        return FeedbackItem(feedback: feedback);
-                      }).toList(),
-                    ),
+                  Column(
+                    children: feedbacks.map((feedback) {
+                      return FeedbackItem(feedback: feedback);
+                    }).toList(),
                   ),
                 ],
               ),
@@ -159,7 +157,7 @@ class _insightsState extends State<insights> {
 class FeedbackItem extends StatelessWidget {
   final Map<String, String> feedback;
 
-  const FeedbackItem({required this.feedback});
+  const FeedbackItem({super.key, required this.feedback});
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +165,7 @@ class FeedbackItem extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 239, 237, 237),
+        color: const Color.fromARGB(255, 239, 237, 237),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -181,14 +179,14 @@ class FeedbackItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 18,
             backgroundImage: AssetImage('assets/profilepic.jpg'),
           ),
           const SizedBox(height: 8),
           Text(
             feedback["name"] ?? "",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Colors.deepPurple,
               fontWeight: FontWeight.bold,
@@ -196,7 +194,7 @@ class FeedbackItem extends StatelessWidget {
           ),
           Text(
             feedback["comment"] ?? "",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Colors.black,
             ),
@@ -206,16 +204,16 @@ class FeedbackItem extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: TextButton(
               onPressed: () {},
+              style: TextButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                foregroundColor: const Color.fromRGBO(103, 58, 183, 1),
+                side: const BorderSide(color: Colors.deepPurple),
+              ),
               child: const Text(
                 'Reply',
                 style: TextStyle(
                   color: Color.fromRGBO(103, 58, 183, 1),
                 ),
-              ),
-              style: TextButton.styleFrom(
-                backgroundColor: Color.fromRGBO(255, 255, 255, 1),
-                foregroundColor: Color.fromRGBO(103, 58, 183, 1),
-                side: const BorderSide(color: Colors.deepPurple),
               ),
             ),
           ),

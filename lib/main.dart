@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trainingstudio2/insights.dart';
 import 'package:trainingstudio2/settings.dart';
 import 'package:trainingstudio2/insights_gg.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -34,19 +35,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('YOGACLAN')),
+      appBar: AppBar(title: const Text('YOGACLAN')),
       body: Column(
         children: [
-          ElevatedButton(onPressed: 
-          (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>insights()));
-          }, child: null),
-          ElevatedButton(onPressed:(){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>settings()));
-          }, child: null)
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const InsightsGG()));
+              },
+              child: null),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsPage()));
+              },
+              child: null)
         ],
       ),
-      
     );
   }
 }
